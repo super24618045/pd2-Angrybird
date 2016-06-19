@@ -50,11 +50,11 @@ void MainWindow::showEvent(QShowEvent *)
     birdie[1] = new Bird(3.0f,3.0f,0.6f,&timer,QPixmap(":/image/BIRD_YELLOW.png").scaled(36,36),world,scene);
     birdie[2] = new Bird(2.0f,3.0f,1.0f,&timer,QPixmap(":/image/BIRD_BIG_BROTHER_YELL.png").scaled(60,60),world,scene);
     birdie[3] = new Bird(5.0f,3.5f,0.4f,&timer,QPixmap(":/image/BIRD_BLUE_YELL.png").scaled(24,24),world,scene);
-    Rectangle *rectangle = new Rectangle(18.0f,2.5f,1.8f,1.9f,&timer,QPixmap(":/image/box.png").scaled(57,57),world,scene);
-    Rectangle *rectangle1 = new Rectangle(18.0f,6.0f,1.8f,1.9f,&timer,QPixmap(":/image/box.png").scaled(57,57),world,scene);
-    Rectangle *rectangle2 = new Rectangle(22.0f,2.5f,1.8f,1.9f,&timer,QPixmap(":/image/box.png").scaled(57,57),world,scene);
-    Rectangle *rectangle3 = new Rectangle(22.0f,6.0f,1.8f,1.9f,&timer,QPixmap(":/image/box.png").scaled(57,57),world,scene);
-    pig = new Box(20.0f,5.0f,1.0f,&timer,QPixmap(":/image/pig1.png").scaled(60,60),world,scene);
+    Rectangle *rectangle = new Rectangle(18.0f,4.8f,1.8f,1.9f,&timer,QPixmap(":/image/box.png").scaled(57,57),world,scene);
+    Rectangle *rectangle1 = new Rectangle(18.0f,6.8f,1.8f,1.9f,&timer,QPixmap(":/image/box.png").scaled(57,57),world,scene);
+    Rectangle *rectangle2 = new Rectangle(22.0f,4.8f,1.8f,1.9f,&timer,QPixmap(":/image/box.png").scaled(57,57),world,scene);
+    Rectangle *rectangle3 = new Rectangle(22.0f,6.8f,1.8f,1.9f,&timer,QPixmap(":/image/box.png").scaled(57,57),world,scene);
+    pig = new Box(20.0f,4.0f,1.0f,&timer,QPixmap(":/image/pig1.png").scaled(60,60),world,scene);
     /*2*/itemList.push_back(pig);
     /*3*/itemList.push_back(rectangle);
     /*4*/itemList.push_back(rectangle1);
@@ -222,8 +222,13 @@ void MainWindow::closeEvent(QCloseEvent *)
 
 void MainWindow::tick()
 {
+
     world->Step(1.0/60.0,6,2);
     scene->update();
+    if(collitime>=50)
+    {
+        pig->g_body->SetTransform(b2Vec2(52,-30),0);
+    }
 }
 
 void MainWindow::QUITSLOT()
@@ -253,11 +258,11 @@ void MainWindow::create()
     birdie[1] = new Bird(3.0f,3.0f,0.6f,&timer,QPixmap(":/image/BIRD_YELLOW.png").scaled(36,36),world,scene);
     birdie[2] = new Bird(2.0f,3.0f,1.0f,&timer,QPixmap(":/image/BIRD_BIG_BROTHER_YELL.png").scaled(60,60),world,scene);
     birdie[3] = new Bird(5.0f,3.5f,0.4f,&timer,QPixmap(":/image/BIRD_BLUE_YELL.png").scaled(24,24),world,scene);
-    Rectangle *rectangle = new Rectangle(18.0f,2.5f,1.8f,1.9f,&timer,QPixmap(":/image/box.png").scaled(57,57),world,scene);
-    Rectangle *rectangle1 = new Rectangle(18.0f,6.0f,1.8f,1.9f,&timer,QPixmap(":/image/box.png").scaled(57,57),world,scene);
-    Rectangle *rectangle2 = new Rectangle(22.0f,2.5f,1.8f,1.9f,&timer,QPixmap(":/image/box.png").scaled(57,57),world,scene);
-    Rectangle *rectangle3 = new Rectangle(22.0f,6.0f,1.8f,1.9f,&timer,QPixmap(":/image/box.png").scaled(57,57),world,scene);
-    pig = new Box(20.0f,5.0f,1.0f,&timer,QPixmap(":/image/pig1.png").scaled(60,60),world,scene);
+    Rectangle *rectangle = new Rectangle(18.0f,4.8f,1.8f,1.9f,&timer,QPixmap(":/image/box.png").scaled(57,57),world,scene);
+    Rectangle *rectangle1 = new Rectangle(18.0f,6.8f,1.8f,1.9f,&timer,QPixmap(":/image/box.png").scaled(57,57),world,scene);
+    Rectangle *rectangle2 = new Rectangle(22.0f,4.8f,1.8f,1.9f,&timer,QPixmap(":/image/box.png").scaled(57,57),world,scene);
+    Rectangle *rectangle3 = new Rectangle(22.0f,6.8f,1.8f,1.9f,&timer,QPixmap(":/image/box.png").scaled(57,57),world,scene);
+    pig = new Box(20.0f,4.0f,1.0f,&timer,QPixmap(":/image/pig1.png").scaled(60,60),world,scene);
     /*2*/itemList.push_back(pig);
     /*3*/itemList.push_back(rectangle);
     /*4*/itemList.push_back(rectangle1);
@@ -290,15 +295,12 @@ void MainWindow::deletething()
         birdcount=-1;
         create();
         timer.start(100/6);
+        collitime=0;
     }
 }
-/*void MainWindow::killpig()
+void MainWindow::BeginContact(b2Contact *contact)
 {
-    deletelist.push_back(pig);
-    for(i=0;i<deletelist.length();i++)
-    {
-    GameItem *temp=deletelist.at(i);
-    delete temp;
-    }
-}*/
+    std::cout << "ya" << std::endl;
+    collitime++;
+}
 
