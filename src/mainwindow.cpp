@@ -54,7 +54,7 @@ void MainWindow::showEvent(QShowEvent *)
     Rectangle *rectangle1 = new Rectangle(18.0f,6.0f,1.8f,1.9f,&timer,QPixmap(":/image/box.png").scaled(57,57),world,scene);
     Rectangle *rectangle2 = new Rectangle(22.0f,2.5f,1.8f,1.9f,&timer,QPixmap(":/image/box.png").scaled(57,57),world,scene);
     Rectangle *rectangle3 = new Rectangle(22.0f,6.0f,1.8f,1.9f,&timer,QPixmap(":/image/box.png").scaled(57,57),world,scene);
-    pig = new Rectangle(20.0f,5.0f,2.0f,2.0f,&timer,QPixmap(":/image/pig1.png").scaled(60,60),world,scene);
+    pig = new Box(20.0f,5.0f,1.0f,&timer,QPixmap(":/image/pig1.png").scaled(60,60),world,scene);
     /*2*/itemList.push_back(pig);
     /*3*/itemList.push_back(rectangle);
     /*4*/itemList.push_back(rectangle1);
@@ -257,7 +257,7 @@ void MainWindow::create()
     Rectangle *rectangle1 = new Rectangle(18.0f,6.0f,1.8f,1.9f,&timer,QPixmap(":/image/box.png").scaled(57,57),world,scene);
     Rectangle *rectangle2 = new Rectangle(22.0f,2.5f,1.8f,1.9f,&timer,QPixmap(":/image/box.png").scaled(57,57),world,scene);
     Rectangle *rectangle3 = new Rectangle(22.0f,6.0f,1.8f,1.9f,&timer,QPixmap(":/image/box.png").scaled(57,57),world,scene);
-    pig = new Rectangle(20.0f,5.0f,2.0f,2.0f,&timer,QPixmap(":/image/pig1.png").scaled(60,60),world,scene);
+    pig = new Box(20.0f,5.0f,1.0f,&timer,QPixmap(":/image/pig1.png").scaled(60,60),world,scene);
     /*2*/itemList.push_back(pig);
     /*3*/itemList.push_back(rectangle);
     /*4*/itemList.push_back(rectangle1);
@@ -275,11 +275,11 @@ void MainWindow::deletething()
     if(shooting==true)
     {
 
-        for(i=0;i<itemList.length();i++)
+        for(int i=0;i<itemList.length();i++)
         {
         deletelist.push_back(itemList.at(i));
         }
-        for(i=0;i<deletelist.length();i++)
+        for(int i=0;i<deletelist.length();i++)
         {
         GameItem *temp=deletelist.at(i);
         delete temp;
