@@ -35,13 +35,13 @@ public:
     /*int screenW=960;
     int screenH=540;
     int cons=20;*/
-    int i;
+    //int i;
     float posx;
     float posy;
     float shootx=5.0f;
     float shooty=8.0f;
     Bird* birdie[5];
-    Rectangle *pig;
+    Box *pig;
     bool onetime=true;
     bool checkrelease=false;
     bool checkkeep=false;
