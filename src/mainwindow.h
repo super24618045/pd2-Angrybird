@@ -50,10 +50,11 @@ public:
     bool blueone=false;
     QGraphicsPixmapItem * shoot;
     QGraphicsPixmapItem * buttons;
-    //void BeginContact(b2Contact *contact);
+    void BeginContact(b2Contact *contact);
     bool shooting=false;
     int enemycount=1;/*an enemy*/
     int birdcount=-1;
+    int collitime=0;
 signals:
     // Signal for closing the game
     void quitGame();
